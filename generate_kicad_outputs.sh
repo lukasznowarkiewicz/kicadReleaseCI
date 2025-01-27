@@ -60,6 +60,14 @@ for pcb_file in "${PCB_FILES[@]}"; do
     echo "    -> Exporting schematic PDF..."
     kicad-cli sch export pdf "${sch_file}" \
       --output "${target_dir}/schematic/${base_name}_schematic.pdf"
+      
+    echo "    -> Exporting schematic SVG..."
+    kicad-cli sch export svg "${sch_file}" \
+      --output "${target_dir}/schematic/${base_name}_schematic_SVG"
+      
+    echo "    -> Generating ERC report..."
+    kicad-cli sch erc "${sch_file}" \
+      --output "${target_dir}/schematic/${base_name}_schematic.rpt"
 
     echo "    -> Exporting BOM (CSV)..."
     kicad-cli sch export bom "${sch_file}" \
