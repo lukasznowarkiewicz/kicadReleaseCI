@@ -52,6 +52,8 @@ for pcb_file in "${PCB_FILES[@]}"; do
   # Create that structure
   mkdir -p "${target_dir}"
   mkdir -p "${target_dir}/schematic"
+  mkdir -p "${target_dir}/board"
+  mkdir -p "${target_dir}/fabrication"
 
   # Check if there's a matching schematic
   sch_file="${pcb_dir}/${base_name}.kicad_sch"
@@ -71,7 +73,7 @@ for pcb_file in "${PCB_FILES[@]}"; do
 
     echo "    -> Exporting BOM (CSV)..."
     kicad-cli sch export bom "${sch_file}" \
-      --output "${target_dir}/${base_name}_bom.csv"
+--output "${target_dir}/fabrication/${base_name}_bom.csv" --fields Reference,Value,Footprint,Qty,Manufacturer,MPN,Datasheet --group-by Value
   else
     echo "  - No matching schematic found, skipping schematic PDF and BOM."
   fi
