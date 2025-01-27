@@ -1,0 +1,39 @@
+name: KiCad Exports
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-export:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Check out the repo so we have the KiCad files
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      # 2) (Optional) Build your custom Docker image with your script included
+      #    If you only want to PULL an existing image (e.g., from Docker Hub), skip this build step.
+      - name: Build Docker Image
+        run: |
+          docker build --platform=linux/amd64 \
+            -t kicad-autogen:latest \
+            .
+
+      # 3) Run the container, mounting the repo at /project
+      #    (the script automatically exports outputs to /project/outputs)
+      - name: Run KiCad Export Container
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/project" \
+            kicad-autogen:latest
+
+      # 4) Upload the generated outputs as an artifact
+      - name: Upload KiCad Outputs
+        uses: actions/upload-artifact@v3
+        with:
+          name: kicad-outputs
+          path: ${{ github.workspace }}/outputs
