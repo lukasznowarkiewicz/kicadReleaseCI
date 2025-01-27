@@ -90,12 +90,12 @@ rm -rf ${target_dir}/board/temp
   # Generate Gerbers
   echo "  -> Generating Gerbers..."
   kicad-cli pcb export gerbers "${pcb_file}" \
-    --output "${target_dir}"
+    --output "${target_dir}/fabrication"
 
   # Generate NC drill files
   echo "  -> Generating NC drill files..."
   kicad-cli pcb export drill "${pcb_file}" \
-    --output "${target_dir}"
+    --output "${target_dir}/fabrication"
 
   echo "  -> All outputs saved to: ${target_dir}"
 done
