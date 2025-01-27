@@ -1,0 +1,232 @@
+(footprint "1x03_P2.54mm_LED_pads"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "1x03_P2.54mm_LED_pads")
+	(tags "1x03_P2.54mm_LED_pads")
+	(property "Reference" "REF**"
+		(at -0.48 -5.01 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "1e4ae1d3-9d90-47c9-a2eb-2e9a67d2ba8e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "1x03_P2.54mm_LED_pads"
+		(at -0.48 5.01 0)
+		(layer "F.Fab")
+		(uuid "6fa46773-f3a9-4321-88b5-4ac77cc9db46")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cb77d003-2a39-47f9-8945-9b238b27c71f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cbc538fe-45fb-4c45-a572-e98fb4478b56")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e9a77891-a699-4fb8-8cbc-f686b5d39f76")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -7.9 -3.91)
+		(end -6.33 -3.91)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4844217f-ae2b-45f5-8b40-8ac0f9907826")
+	)
+	(fp_line
+		(start -7.9 -3.09)
+		(end -7.9 -3.91)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4bf4e963-d91a-4e99-aa6c-449979a2b38e")
+	)
+	(fp_rect
+		(start -7.9 -4)
+		(end -3.2 4)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "90ca57bf-f94d-4d33-be4d-dff8fddaac0d")
+	)
+	(fp_line
+		(start -6.425 -2.86)
+		(end -6.425 -2.22)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "79d30fca-f965-49f3-a237-058d29f1eb3e")
+	)
+	(fp_line
+		(start -6.425 -2.22)
+		(end -1.725 -2.22)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "24a9dd06-acdb-4d5d-843f-a0468e948cf9")
+	)
+	(fp_line
+		(start -6.425 -0.32)
+		(end -6.425 0.32)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "dda4d9c7-92c1-4785-8594-4f363acd92b8")
+	)
+	(fp_line
+		(start -6.425 0.32)
+		(end -1.725 0.32)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "a9fae972-59cb-4588-8d6f-c3cbc1db8ded")
+	)
+	(fp_line
+		(start -6.425 2.22)
+		(end -6.425 2.86)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "0781715c-ad4c-4a8f-b18c-40ab4f618627")
+	)
+	(fp_line
+		(start -6.425 2.86)
+		(end -1.725 2.86)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "3b01f59d-da94-43f6-a687-2cba5a6181f6")
+	)
+	(fp_line
+		(start -1.725 -2.86)
+		(end -6.425 -2.86)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "5024a92d-74c9-423d-97bc-40704b79dec7")
+	)
+	(fp_line
+		(start -1.725 -0.32)
+		(end -6.425 -0.32)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "2a12a8a7-8602-424b-91f5-434cd5ab4cba")
+	)
+	(fp_line
+		(start -1.725 2.22)
+		(end -6.425 2.22)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "9c69a06c-e695-47ed-8866-85ed38f3d637")
+	)
+	(fp_text user "${REFERENCE}"
+		(at -0.48 0 90)
+		(layer "F.Fab")
+		(uuid "69b1596d-4904-4f26-9d26-878f78f6b800")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -5.525 -2.54)
+		(size 4 2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "256808a5-17e5-4c2a-9d3d-e1e467768b73")
+	)
+	(pad "2" smd rect
+		(at -5.525 0)
+		(size 4 2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "331b1106-1ff3-4af6-90b6-5c7ea9de9d61")
+	)
+	(pad "3" smd rect
+		(at -5.525 2.54)
+		(size 4 2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "1ee5cc3d-2a86-4c06-9fd8-70364f3919a3")
+	)
+	(model "${KIPRJMOD}/Library/step/WS2812B_strip.step"
+		(offset
+			(xyz -6.5 -5 0.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 90 0 0)
+		)
+	)
+)

@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "HSRGB")(type "KiCad")(uri "${KIPRJMOD}/Library/HSRGB.kicad_sym")(options "")(descr ""))
+)
