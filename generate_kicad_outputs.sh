@@ -45,6 +45,7 @@ for pcb_file in "${PCB_FILES[@]}"; do
   mkdir -p "${target_dir}/schematic"
   mkdir -p "${target_dir}/board"
   mkdir -p "${target_dir}/fabrication"
+  mkdir -p "${target_dir}/step"
 
   # Check if there's a matching schematic
   sch_file="${pcb_dir}/${base_name}.kicad_sch"
@@ -96,6 +97,12 @@ rm -rf ${target_dir}/board/temp
   echo "  -> Generating NC drill files..."
   kicad-cli pcb export drill "${pcb_file}" \
     --output "${target_dir}/fabrication"
+
+  # Generate STEP model
+  echo "  -> Generating STEP model..."
+  kicad-cli pcb export step "${pcb_file}" \
+    --output "${target_dir}/step/${base_name}.step" \
+    --include-tracks --include-zones --min-distance 0.001mm --no-optimize-step
 
   echo "  -> All outputs saved to: ${target_dir}"
 done
