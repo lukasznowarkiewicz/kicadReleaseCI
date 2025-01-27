@@ -1,18 +1,9 @@
 #!/usr/bin/env bash
 set +e
 
-########################################
-# CONFIG
-########################################
 # Where we put all generated output, relative to /project
 OUTPUT_ROOT="/project/outputs"
 
-# You can modify which layers get included in the board PDF
-BOARD_PDF_LAYERS="F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts"
-
-########################################
-# PREP
-########################################
 # Make sure the output directory exists
 mkdir -p "${OUTPUT_ROOT}"
 
@@ -73,16 +64,28 @@ for pcb_file in "${PCB_FILES[@]}"; do
 
     echo "    -> Exporting BOM (CSV)..."
     kicad-cli sch export bom "${sch_file}" \
---output "${target_dir}/fabrication/${base_name}_bom.csv" --fields Reference,Value,Footprint,Qty,Manufacturer,MPN,Datasheet --group-by Value
+    --output "${target_dir}/fabrication/${base_name}_bom.csv" \
+    --fields Reference,Value,Footprint,Qty,Manufacturer,MPN,Datasheet --group-by Value
   else
     echo "  - No matching schematic found, skipping schematic PDF and BOM."
   fi
 
   # Export board PDF
-  echo "  -> Exporting board PDF..."
+  echo "  -> Exporting board layers as separate PDFs..."
+    mkdir -p "${target_dir}/board/temp"
+layers="F.Cu B.Cu In1.Cu In2.Cu In3.Cu In4.Cu F.Mask B.Mask F.SilkS B.SilkS F.Paste B.Paste Edge.Cuts F.CrtYd B.CrtYd F.Fab B.Fab F.Assembly B.Assembly Drill DrillMap Dwgs.User Cmts.User Eco1.User Eco2.User Margin User.1 User.2 User.3 User.4 User.5"
+
+for layer in $layers; do
   kicad-cli pcb export pdf "${pcb_file}" \
-    --output "${target_dir}/${base_name}_board.pdf" \
-    --layers "${BOARD_PDF_LAYERS}"
+    --output "${target_dir}/board/temp/${base_name}_${layer}.pdf" \
+    --layers "$layer" \
+    --ibt
+done
+
+echo "  -> Stitching PDFs into one document..."
+rm -f ${target_dir}/board/${base_name}_board.pdf
+pdftk ${target_dir}/board/temp/${base_name}_*.pdf cat output ${target_dir}/board/${base_name}_board.pdf
+rm -rf ${target_dir}/board/temp
 
   # Generate Gerbers
   echo "  -> Generating Gerbers..."
