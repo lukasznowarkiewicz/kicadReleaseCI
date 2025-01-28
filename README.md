@@ -35,7 +35,7 @@ This repository provides:
 In your **KiCad project repository**, create a workflow file (e.g., `.github/workflows/kicad_export_caller.yml`):
 
 ```yaml
-name: "Call KiCad Reusable Export"
+name: "Kicad 8 release CI"
 
 on:
   push:
