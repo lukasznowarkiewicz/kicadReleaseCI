@@ -1,0 +1,59 @@
+name: "KiCad Export Reusable Workflow"
+
+on:
+  workflow_call:
+    # Two required inputs: the caller's repository name and ref/branch/sha.
+    inputs:
+      target_repo:
+        type: string
+        required: true
+        description: "Full name of the caller's repo, e.g. owner/repo"
+      target_ref:
+        type: string
+        required: true
+        description: "Git ref of the caller's repo (e.g. main, feature-branch, or SHA)"
+
+jobs:
+  build-and-export:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read  # Needed so we can check out a private caller repo
+
+    steps:
+      # 1) Check out the caller's repository (the one with KiCad files).
+      - name: Check out caller's repo
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ inputs.target_repo }}
+          ref: ${{ inputs.target_ref }}
+          path: project  # Store caller's code in ./project
+
+      # 2) Check out *this* (kicadReleaseCI) repo, to get Dockerfile + scripts.
+      - name: Check out kicadReleaseCI repo (this workflow's repo)
+        uses: actions/checkout@v3
+        with:
+          repository: lukasznowarkiewicz/kicadReleaseCI
+          ref: main
+          path: ci-repo
+
+      # 3) Build Docker image from the Dockerfile in the ci-repo folder.
+      - name: Build Docker Image
+        run: |
+          docker build --platform=linux/amd64 \
+            -t kicad-autogen:latest \
+            ci-repo/
+
+      # 4) Run the container, mounting the caller's repo at /project.
+      - name: Run KiCad Export
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/project:/project" \
+            kicad-autogen:latest
+
+      # 5) Upload the outputs (assumes your script writes them into /project/outputs).
+      - name: Upload KiCad Outputs
+        uses: actions/upload-artifact@v3
+        with:
+          name: kicad-outputs
+          path: ${{ github.workspace }}/project/outputs
